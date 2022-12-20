@@ -30,18 +30,19 @@ void setup() {
 }
 
 void loop() {
-  while(0){
-  Serial.print("Total blocks= ");
-  Serial.println(pixy.ccc.getBlocks());
-  delay(100);
-  Serial.print("Detected signature 4?=");
-  Serial.println(pixy.ccc.getBlocks(false, 4));
-  delay(100);
-  for(int i = 0; i < pixy.ccc.getBlocks(); i++){
-  Serial.print("Block has signature = ");
-  Serial.println(pixy.ccc.blocks[i].m_signature);
-  }
-  delay(1000);
+  //used for testing pixycam output
+  while(0){ //set condition to 1 to see output
+    Serial.print("Total blocks= ");
+    Serial.println(pixy.ccc.getBlocks());
+    delay(100);
+    Serial.print("Detected signature 4?=");
+    Serial.println(pixy.ccc.getBlocks(false, 4));
+    delay(100);
+    for(int i = 0; i < pixy.ccc.getBlocks(); i++){
+      Serial.print("Block has signature = ");
+      Serial.println(pixy.ccc.blocks[i].m_signature);
+    }
+    delay(1000);
   }
   //iterate through blocks array
   for(int i = 0; i < pixy.ccc.getBlocks(false); i++){
@@ -72,23 +73,6 @@ void loop() {
         brake(motor1, motor2);
         delay(1000);
         pixy.ccc.getBlocks(false);
-      }
-    }
-    else if(pixy.ccc.blocks[i].m_signature == 7){
-      //turn right
-      if(pixy.ccc.blocks[i].m_x > 158){
-        brake(motor1, motor2);
-        delay(1000);
-        motor1.drive(150, 3500);
-        brake(motor1, motor2);
-        delay(1000);
-      }
-      else{
-        brake(motor1, motor2);
-        delay(1000);
-        motor2.drive(150, 3500);
-        brake(motor1, motor2);
-        delay(1000);
       }
     }
   }
